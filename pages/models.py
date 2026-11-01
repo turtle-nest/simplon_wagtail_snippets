@@ -18,7 +18,10 @@ class CoachPage(Page):
     ]
 
 class CoursPage(Page):
-    pass
+    def get_context(self, request):
+        context = super().get_context(request)
+        context["cours"] = Cours.objects.all()
+        return context
 
 @register_snippet
 class Cours(models.Model):
@@ -35,8 +38,7 @@ class Cours(models.Model):
     ]
 
     def __str__(self):
-        return self.name
-    
+        return self.nom
 
 class ContactPage(Page):
     pass

@@ -5,32 +5,23 @@
 
 {% block content %}
 
-<img class="page-image" src="{% static 'images/banniere-cours.svg' %}" alt="Un cours collectif en action">
+<img class="page-image"
+     src="{% static 'images/banniere-cours.svg' %}"
+     alt="Un cours collectif en action">
 
 <div class="content">
     <h1>Nos cours</h1>
 
     <ul class="cours-list">
-        <li class="cours-card">
-            <h3>Cardio Boost</h3>
-            <p>Lundi et jeudi, 18h00. Niveau intermédiaire.</p>
-            <p>Un enchaînement intense pour travailler l'endurance et brûler un maximum de calories.</p>
-        </li>
-        <li class="cours-card">
-            <h3>Renforcement musculaire</h3>
-            <p>Mardi, 19h00. Tous niveaux.</p>
-            <p>Travail ciblé des principaux groupes musculaires, avec ou sans matériel.</p>
-        </li>
-        <li class="cours-card">
-            <h3>Stretching &amp; mobilité</h3>
-            <p>Mercredi, 12h30. Tous niveaux.</p>
-            <p>Une séance douce pour améliorer la souplesse et prévenir les blessures.</p>
-        </li>
-        <li class="cours-card">
-            <h3>Coaching individuel</h3>
-            <p>Sur rendez-vous.</p>
-            <p>Un programme entièrement personnalisé, construit avec vous selon vos objectifs.</p>
-        </li>
+        {% for cours_item in cours %}
+            <li class="cours-card">
+                <h3>{{ cours_item.nom }}</h3>
+                <p>{{ cours_item.horaire }} — {{ cours_item.niveau }}</p>
+                <p>{{ cours_item.description }}</p>
+            </li>
+        {% empty %}
+            <li>Aucun cours disponible pour le moment.</li>
+        {% endfor %}
     </ul>
 </div>
 
