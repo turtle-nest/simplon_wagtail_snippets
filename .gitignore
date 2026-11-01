@@ -5,3 +5,7 @@ __pycache__/
 /media/
 /static/
 .env
+
+env/
+db.sqlite3
+db.sqlite3.backup
