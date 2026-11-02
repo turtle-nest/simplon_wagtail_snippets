@@ -13,11 +13,11 @@
     <h1>Nos cours</h1>
 
     <ul class="cours-list">
-        {% for cours_item in cours %}
+        {% for cours in cours_list %}
             <li class="cours-card">
-                <h3>{{ cours_item.nom }}</h3>
-                <p>{{ cours_item.horaire }} — {{ cours_item.niveau }}</p>
-                <p>{{ cours_item.description }}</p>
+                <h2>{{ cours.nom }}</h2>
+                <p>{{ cours.horaire }} — {{ cours.niveau }}</p>
+                <p>{{ cours.description }}</p>
             </li>
         {% empty %}
             <li>Aucun cours disponible pour le moment.</li>
