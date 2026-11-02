@@ -104,3 +104,74 @@ main, .content {
 address {
     font-style: normal;
 }
+
+
+/* Contact form container */
+.contact-form {
+    background: var(--navy-light);
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+/* Spacing between form fields */
+.contact-form p {
+    margin: 0 0 1.5rem;
+}
+
+/* Field labels */
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+/* Text fields and text areas */
+.contact-form input:not([type="submit"]),
+.contact-form textarea,
+.contact-form select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    background: #ffffff;
+    color: var(--navy);
+    font: inherit;
+}
+
+/* Keyboard focus */
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+    outline: 3px solid var(--orange-light);
+    outline-offset: 2px;
+}
+
+/* Submit button */
+.contact-form input[type="submit"] {
+    background: var(--orange);
+    color: var(--navy);
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem 1.5rem;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Submit button hover */
+.contact-form input[type="submit"]:hover {
+    background: var(--orange-light);
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    .contact-form {
+        padding: 1rem;
+    }
+
+    .contact-form input[type="submit"] {
+        width: 100%;
+    }
+}

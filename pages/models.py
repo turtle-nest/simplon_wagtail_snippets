@@ -1,8 +1,11 @@
 from django.db import models
+from modelcluster.fields import ParentalKey
 
 from wagtail.models import Page
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.snippets.models import register_snippet
+from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+from wagtail.fields import RichTextField
 
 class CoachPage(Page):
     photo = models.ForeignKey(
@@ -40,5 +43,22 @@ class Cours(models.Model):
     def __str__(self):
         return self.nom
 
-class ContactPage(Page):
-    pass
+class FormField(AbstractFormField):
+    page = ParentalKey(
+        "ContactPage",
+        on_delete=models.CASCADE,
+        related_name="form_fields",
+    )
+
+class ContactPage(AbstractEmailForm):
+    intro = RichTextField(blank=True)
+    thankyoutext = RichTextField(blank=True)
+
+    content_panels = AbstractEmailForm.content_panels + [
+        FieldPanel("intro"),
+        InlinePanel("form_fields", label="Champs du formulaire"),
+        FieldPanel("thankyoutext"),
+        FieldPanel("to_address"),
+        FieldPanel("from_address"),
+        FieldPanel("subject"),
+    ]

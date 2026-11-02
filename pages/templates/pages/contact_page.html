@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load wagtailcore_tags %}
 
 {% block body_class %}template-contactpage{% endblock %}
 
@@ -11,6 +12,12 @@
         12 rue de la Forme<br>
         33000 Bordeaux
     </address>
+
+    <form class="contact-form" action="{% pageurl page %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Envoyer">
+    </form>
 
     <p><strong>Téléphone :</strong> 05 56 00 00 00</p>
     <p><strong>Email :</strong> contact@coach-max.fr</p>
