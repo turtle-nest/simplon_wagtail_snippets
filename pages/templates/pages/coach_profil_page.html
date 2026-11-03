@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-coachprofilpage{% endblock %}
+
+{% block content %}
+
+<article class="coach-profile">
+
+    <div class="coach-profile-image">
+        {% if page.photo %}
+            {% image page.photo fill-500x650 %}
+        {% endif %}
+    </div>
+
+    <div class="coach-profile-content">
+
+        <h1>{{ page.nom }}</h1>
+
+        <p class="coach-profile-specialite">
+            {{ page.specialite }}
+        </p>
+
+        <div class="coach-profile-bio">
+            {{ page.bio|richtext }}
+        </div>
+
+        {% if page.get_parent %}
+            <a href="{% pageurl page.get_parent %}"
+               class="coach-back-link">
+                ← Retour à nos coachs
+            </a>
+        {% endif %}
+
+    </div>
+
+</article>
+
+{% endblock content %}

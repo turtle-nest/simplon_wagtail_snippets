@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-coachpage{% endblock %}
+
+{% block content %}
+
+<section class="coachs-page">
+
+    <div class="coachs-header">
+        <h1>Notre équipe de coachs</h1>
+
+        <div class="coachs-intro">
+            {{ page.intro|richtext }}
+        </div>
+    </div>
+
+    <ul class="coach-list">
+        {% for coach in coachs %}
+            <li class="coach-card">
+
+                {% if coach.photo %}
+                    {% image coach.photo fill-400x500 %}
+                {% endif %}
+
+                <div class="coach-info">
+                    <h2>
+                        <a href="{% pageurl coach %}">
+                            {{ coach.nom }}
+                        </a>
+                    </h2>
+                    <p>{{ coach.specialite }}</p>
+                </div>
+
+            </li>
+        {% empty %}
+            <li>Aucun coach disponible pour le moment.</li>
+        {% endfor %}
+    </ul>
+
+</section>
+
+{% endblock content %}
